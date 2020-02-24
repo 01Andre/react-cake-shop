@@ -1,13 +1,29 @@
-import React from 'react'
+import React from 'react';
+import {buyCake} from '../redux'
+import {connect} from 'react-redux'
 
 function CakeContainer(props) {
-    console.log(props.numberOfCakes)
     return (
         <div>
-            <h2>Nombre de gâteaux</h2>
-            <button>Acheter</button>
+            <h2>Nombre de gâteaux : {props.numberOfCakes}</h2>
+            <button onClick={props.buyCake}>Acheter</button>
         </div>
     )
 }
+//pour récupérer le state, et le mettre dans les props
+const mapStateToProps = state => {
+    return {
+        numberOfCakes: state.cake.numberOfCakes
+    }
+}
+//pour modifier le state : penser à importer les actions : ici buycake
 
-export default CakeContainer
+const mapDispatchToProps = dispatch => {
+    return {
+        buyCake : () => dispatch(buyCake())
+    }
+}
+
+
+//le connect permet de connecter les fonctions à notre container
+export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer)
