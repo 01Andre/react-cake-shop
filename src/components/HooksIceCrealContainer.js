@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {buyIceCream} from '../redux'
+
 function HooksIceCrealContainer() {
 const numberOfIceCreams = useSelector(state => state.iceCream.iceCream);
 const dispatch = useDispatch()
